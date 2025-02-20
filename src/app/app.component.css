@@ -1,0 +1,27 @@
+#txtUsername::placeholder,#txtPassword::placeholder
+{
+    color: grey;
+}
+
+a
+{
+   color:white; 
+}
+
+.footerx
+{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+body
+{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+
+
