@@ -2,13 +2,16 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { FooterComponent } from './common/footer/footer.component';
+import { IndexComponent } from './admin/index/index.component';
+import { UserIndexComponent } from './user/user-index/user-index.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    // StartPageComponent,  // Ensure it's declared here
-    LoginComponent
+    FooterComponent,
+    IndexComponent,
+    UserIndexComponent,
   ],
   imports: [
     BrowserModule,
