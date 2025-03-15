@@ -1,0 +1,82 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="#">  
+        <h2 class="text-white">FestFlowAI</h2>
+      </a>
+  
+      <div class="ms-auto">
+        <form class="d-flex" #loginForm="ngForm" (ngSubmit)="loginForm_submit(loginForm)">
+          <input class="form-control form-control-sm me-2 text-dark" 
+            id="txtEmail" type="email" placeholder="Email" name="txtEmail"
+            ngModel #txtEmail="ngModel" required email
+          >
+          <input class="form-control form-control-sm me-2 text-dark" 
+            id="txtPassword" type="password" placeholder="Password" name="txtPassword"
+            ngModel #txtPassword="ngModel" required
+          >
+          <button type="submit" class="btn btn-light" [disabled]="loginForm.invalid">Login</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  
+  <section class="container mt-4">
+    <div class="row">
+      <div class="col-md-6">
+        <img class="img-fluid w-100" src="images/Websitephoto.avif" alt="Website Photo">
+        <div class="slogan text-center text-secondary">
+          <h5>Focuses on the smooth flow of festivals and events</h5>
+        </div>
+      </div>
+  
+      <div class="col-md-5 offset-md-1 mt-3">
+        <div class="alert alert-success" *ngIf="this.isRegisteredSucessModalVisible">
+          Registered successfully
+        </div>
+        <div class="alert alert-danger" *ngIf="this.isRegisteredFailedModalVisible">
+          Registration failed. Please check entered details carefully.
+        </div>
+
+        <h2>Sign up</h2>
+        <b class="text-secondary">It's free and always will be</b>
+  
+        <form #signUpForm="ngForm" (ngSubmit)="signUpForm_submit(signUpForm)">
+          <div class="d-flex gap-2 mt-4">
+            <input type="text" class="form-control" id="txtSignUpFirstName" 
+              name="txtSignUpFirstName" placeholder="First Name" 
+              ngModel #txtSignUpFirstName="ngModel" required
+            >
+            <input class="form-control" id="txtSignUpLastName" type="text" 
+              placeholder="Last Name" name="txtSignUpLastName"
+              ngModel #txtSignUpLastName="ngModel" required
+            >
+          </div>
+          <input class="form-control mt-3" id="signEmail" type="email" 
+            placeholder="Email Address" name="txtSignUpEmail"
+            ngModel #txtSignUpEmail="ngModel" required email
+          >
+          <input class="form-control mt-3" id="txtStudentEnrollment" type="text" 
+            placeholder="Student ID" name="txtStudentEnrollment"
+            ngModel #txtStudentEnrollment="ngModel" required
+          >
+          <select name="drpDepartment" id="drpDepartment" 
+            class="form-control mt-3 text-secondary px-2"
+            ngModel #drpDepartment="ngModel" required
+          >
+            <option value="" selected disabled>Select Department</option>
+            <option [value]="department.id" *ngFor="let department of departments">{{department.name}}</option>
+          </select>
+          <input class="form-control mt-3" id="txtSignUpPassword" type="password"
+            placeholder="New Password" name="txtSignUpPassword"
+            ngModel #txtSignUpPassword="ngModel" required
+          >
+          <input class="form-control mt-3" id="txtSignUpConfirmPassword" type="password"
+            placeholder="Confirm Password" name="txtSignUpConfirmPassword"
+            ngModel #txtSignUpConfirmPassword="ngModel" required
+          >
+          <button type="submit" class="btn btn-primary w-100 py-2 mt-3" [disabled]="signUpForm.invalid">Sign Up</button>
+        </form>
+      </div>
+    </div>
+  </section>
+  <app-footer></app-footer>

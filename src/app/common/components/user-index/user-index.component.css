@@ -1,0 +1,4 @@
+#txtEmail::placeholder, #txtPassword::placeholder
+{
+    color: gray;
+}
