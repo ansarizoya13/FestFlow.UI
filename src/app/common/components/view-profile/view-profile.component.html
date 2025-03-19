@@ -1,0 +1,42 @@
+<!-- view-profile.component.html -->
+<div class="container mt-5">
+    <h3 class="text-primary">PROFILE</h3>
+    <div class="row">
+      <!-- Left Column: Image Section with Border -->
+      <div class="col-md-4 text-center ">
+        <div class="card py-1">
+          <img src="images/user-icon.png" alt="Profile Picture" class="rounded-circle">
+        </div>
+      </div>
+  
+      <!-- Right Column: Profile Details -->
+      <div class="col-md-8">
+        <div class="card pt-4 pb-5">
+          <div class="card-body">
+            <form>
+              <div class="form-group mb-3">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" [value]="this.populateFields().name" readonly>
+              </div>
+  
+              <div class="form-group mb-3">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" [value]="this.populateFields().email" readonly>
+              </div>
+  
+              <div class="form-group mb-3">
+                <label for="enrollmentnumber">Enrollment Number</label>
+                <input type="text" class="form-control" id="enrollmentnumber" [value]="this.populateFields().enrollmentNumber" readonly>
+              </div>
+  
+              <div class="form-group mb-3">
+                <label for="branch">Branch</label>
+                <input type="text" class="form-control" id="branch" [value]="this.populateFields().branch" readonly>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

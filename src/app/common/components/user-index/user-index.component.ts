@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth.service';
 import departmentViewModel from '../../models/departmentViewModel';
 import signUpModel from '../../models/signUpModel';
 import loginModel from '../../models/loginModel';
+import { SharedService } from '../../services/shared/shared.service';
 
 @Component({
   selector: 'app-user-index',
@@ -19,7 +20,9 @@ export class UserIndexComponent implements OnInit{
   isRegisteredSucessModalVisible : boolean = false;
   isRegisteredFailedModalVisible : boolean = false;
 
-  constructor(private router : Router, private authService : AuthService)
+  constructor(private router : Router, 
+    private authService : AuthService, 
+    private sharedService : SharedService)
   {
 
   }
@@ -40,7 +43,13 @@ export class UserIndexComponent implements OnInit{
       {
         localStorage.setItem('token', res.token)
         form.reset();
-        this.router.navigate(['/admin'])
+
+        let isAdmin = this.sharedService.isLoggedInUserAdmin()
+
+        if(isAdmin)
+          this.router.navigate(['admin/home'])
+        else
+          this.router.navigate(['user'])
       }
     }, (err : any)=> {
         alert('Invalid Credentials');

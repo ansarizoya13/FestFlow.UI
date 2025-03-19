@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SharedService } from '../../../common/services/shared/shared.service';
+import { NAME } from '../../../common/constants/claims';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-index',
@@ -7,6 +10,7 @@ import { Component } from '@angular/core';
   templateUrl: './index.component.html',
   styleUrl: './index.component.css'
 })
-export class IndexComponent {
+export class IndexComponent{
 
+  
 }
