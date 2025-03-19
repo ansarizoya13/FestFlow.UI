@@ -24,7 +24,7 @@
                 </td>
                 <td>
                     <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="isDeleted" [checked]="user.isDeleted">
+                        <input class="form-check-input" type="checkbox" role="switch" id="isDeleted" [checked]="user.isDeleted" (change)="chkDeleted_changed($event, user.userId)">
                     </div>
                 </td>
             </tr>

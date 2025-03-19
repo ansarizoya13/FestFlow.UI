@@ -4,6 +4,8 @@ import { environment } from '../../../../environments/environment';
 import { Observable } from 'rxjs';
 import userViewModel from '../../../common/models/userViewModel';
 import { SharedService } from '../../../common/services/shared/shared.service';
+import markUserAdmin from '../../../common/models/markUserAdmin';
+import markUserInactive from '../../../common/models/markUserInactive';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +17,18 @@ export class UserService {
   getUsersList() : Observable<userViewModel>
   {
     const headers = this.sharedService.getHeaders();
-    return this.http.get<userViewModel>(`${environment.apiUrl}/api/admin/User/GetUsersList`, {headers});
+    return this.http.get<userViewModel>(`${environment.apiUrl}/api/User/GetUsersList`, {headers});
+  }
+
+  markUserInactive(opts : markUserInactive) : Observable<boolean>
+  {
+    const headers = this.sharedService.getHeaders();
+    return this.http.post<boolean>(`${environment.apiUrl}/api/User/set-inactive`, opts, {headers})
+  }
+
+  markUserAdmin(opts : markUserAdmin) : Observable<boolean>
+  {
+    const headers = this.sharedService.getHeaders();
+    return this.http.post<boolean>(`${environment.apiUrl}/api/User/set-admin`, opts, {headers})
   }
 }
