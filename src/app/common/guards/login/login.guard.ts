@@ -2,17 +2,24 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { SharedService } from '../../services/shared/shared.service';
 
-export const adminGuard: CanActivateFn = (route, state) => {
+export const loginGuard: CanActivateFn = (route, state) => {
 
-  const router = inject(Router);
+  const router = inject(Router)
   const sharedService = inject(SharedService)
   const path = route.routeConfig?.path;
 
-  if (sharedService.isLoggedInUserAdmin()) {
-    return true;
+  if(sharedService.isLoggedInUserAdmin())
+  {
+    router.navigate(['/admin'])
+    return false;
   }
-  else {
+  else if(sharedService.isLoggedInUserNonAdmin())
+  {
     router.navigate(['/user'])
     return false;
+  }
+  else
+  {
+    return true;
   }
 };

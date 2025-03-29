@@ -10,36 +10,45 @@ import { ManageUserComponent } from './admin/components/manage-user/manage-user.
 import { ManageEventsComponent } from './admin/components/manage-events/manage-events.component';
 import { ViewProfileComponent } from './common/components/view-profile/view-profile.component';
 import { PageNotFoundComponent } from './common/components/page-not-found/page-not-found.component';
+import { loginGuard } from './common/guards/login/login.guard';
+import { UserstartComponent } from './user/components/userstart/userstart.component';
+import { EventhomeComponent } from './user/components/eventhome/eventhome.component';
+import { FeebackhomeComponent } from './user/components/feebackhome/feebackhome.component';
 
 
 const routes: Routes = [
-  { path : "", 
-    component : UserIndexComponent 
+  {
+    path: "",
+    component: UserIndexComponent,
+    canActivate: [loginGuard]
   },
   {
-    path : "admin",
-    component : IndexComponent,
-    canActivate : [adminGuard],
-    children : [
-      { path : "home", component : HomeComponent},
-      { path : "manage/users", component : ManageUserComponent},
-      { path : "manage/events", component : ManageEventsComponent},
-      { path : "profile", component : ViewProfileComponent}
+    path: "admin",
+    component: IndexComponent,
+    canActivate: [adminGuard],
+    children: [
+      { path: "", component: HomeComponent },
+      { path: "home", component: HomeComponent },
+      { path: "manage/users", component: ManageUserComponent },
+      { path: "manage/events", component: ManageEventsComponent },
+      { path: "profile", component: ViewProfileComponent }
     ]
   },
   {
-    path : "user",
-    children : [
-      {
-        path : "",
-        component : UserhomeComponent,
-        canActivate : [userGuard]
-      }
+    path: "user",
+    component : UserstartComponent,
+    canActivate: [userGuard],
+    children: [
+      { path: "", component: UserhomeComponent },
+      { path: "home", component: UserhomeComponent },
+      { path: "profile", component: ViewProfileComponent },
+      { path: "events", component: EventhomeComponent },
+      { path: "feedbacks", component: FeebackhomeComponent }
     ]
   },
   {
-    path : "**",
-    component : PageNotFoundComponent
+    path: "**",
+    component: PageNotFoundComponent
   }
 ];
 

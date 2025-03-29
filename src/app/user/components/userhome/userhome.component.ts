@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-userhome',
@@ -8,5 +9,14 @@ import { Component } from '@angular/core';
   styleUrl: './userhome.component.css'
 })
 export class UserhomeComponent {
+
+  constructor(private router : Router) {
+    
+  }
+
+  card_click(path : string)
+  {
+    this.router.navigate([path])
+  }
 
 }

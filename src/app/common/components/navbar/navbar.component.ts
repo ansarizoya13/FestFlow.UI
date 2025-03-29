@@ -13,6 +13,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class NavbarComponent {
   name : string = ""
+  isAdmin : boolean = false;
 
   constructor(private sharedService : SharedService, private authService : AuthService) {
     
@@ -20,6 +21,7 @@ export class NavbarComponent {
 
   ngOnInit(): void {
     this.name = this.sharedService.getDataFromClaims(NAME)
+    this.isAdmin = this.sharedService.isLoggedInUserAdmin();
   }
   
   logout()

@@ -6,9 +6,11 @@ export const userGuard: CanActivateFn = (route, state) => {
 
   const router = inject(Router);
   const sharedService = inject(SharedService);
+  const path = route.routeConfig?.path;
 
-  if (sharedService.isLoggedInUserNonAdmin())
+  if (sharedService.isLoggedInUserNonAdmin()) {
     return true;
+  }
   else {
     router.navigate([""]);
     return false;

@@ -1,3 +1,65 @@
-<div class="container my-5">
+<div class="container my-5 d-flex justify-content-between align-items-center">
     <h3 class="text-primary">EVENTS</h3>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEventModal">
+        + Add Event
+    </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl"> <!-- Added `modal-xl` for extra-wide modal -->
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title" id="addEventModalLabel">Add New Event</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <form class="row g-3"> <!-- Added `row g-3` for better grid spacing -->
+                    <div class="col-md-6">
+                        <label for="eventName" class="form-label">Event Name</label>
+                        <input type="text" class="form-control" id="eventName" placeholder="Enter event name">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="eventStart" class="form-label">Event Start Date & Time</label>
+                        <input type="datetime-local" class="form-control" id="eventStart">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="eventEnd" class="form-label">Event End Date & Time</label>
+                        <input type="datetime-local" class="form-control" id="eventEnd">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="eventFile" class="form-label">Upload File (XLS/XLSX only)</label>
+                        <input type="file" class="form-control" id="eventFile" accept=".xls,.xlsx">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="eventDescription" class="form-label">Event Description</label>
+                        <textarea class="form-control" id="eventDescription" rows="3"
+                            placeholder="Enter event details"></textarea>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="branches" class="form-label">Departments</label>
+                        <ngx-select-dropdown [config]="drpBranchConfig" 
+                            [options]="drpBranchOptions"
+                            class="form-control border border-dark" name="drpBranch"
+                            (change)="drpBranch_change($event)" 
+                            ngModel #drpGender="ngModel" required
+                        >
+                        </ngx-select-dropdown>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save Event</button>
+            </div>
+        </div>
+    </div>
 </div>

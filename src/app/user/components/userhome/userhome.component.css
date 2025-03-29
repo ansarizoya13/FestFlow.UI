@@ -1,0 +1,30 @@
+.card-height {
+  height: 300px;
+  /* Increased card height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card-height:hover {
+  transform: translateY(-10px);
+  /* Hover effect */
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.display-4 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+#card:hover
+{
+  cursor: pointer;
+}
