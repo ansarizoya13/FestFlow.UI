@@ -14,6 +14,7 @@ import { loginGuard } from './common/guards/login/login.guard';
 import { UserstartComponent } from './user/components/userstart/userstart.component';
 import { EventhomeComponent } from './user/components/eventhome/eventhome.component';
 import { FeebackhomeComponent } from './user/components/feebackhome/feebackhome.component';
+import { ViewEventComponent } from './user/components/view-event/view-event.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,7 @@ const routes: Routes = [
       { path: "home", component: UserhomeComponent },
       { path: "profile", component: ViewProfileComponent },
       { path: "events", component: EventhomeComponent },
+      { path : "events/:id", component : ViewEventComponent},
       { path: "feedbacks", component: FeebackhomeComponent }
     ]
   },

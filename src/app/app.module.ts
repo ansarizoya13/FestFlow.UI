@@ -21,6 +21,7 @@ import { UserstartComponent } from './user/components/userstart/userstart.compon
 import { FeebackhomeComponent } from './user/components/feebackhome/feebackhome.component';
 import { EventhomeComponent } from './user/components/eventhome/eventhome.component';
 import { authInterceptorInterceptor } from './common/interceptors/auth-interceptor.interceptor';
+import { ViewEventComponent } from './user/components/view-event/view-event.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { authInterceptorInterceptor } from './common/interceptors/auth-intercept
     UserstartComponent,
     FeebackhomeComponent,
     EventhomeComponent,
+    ViewEventComponent,
   ],
   imports: [
     BrowserModule,

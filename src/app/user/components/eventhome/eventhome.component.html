@@ -1,4 +1,30 @@
 <div class="container my-5">
-    <p>eventhome works!</p>
+    <h3 class="text-primary">EVENTS</h3>
+
+    <h5 class="text-center my-5" *ngIf="this.events.length < 1">No Events found!</h5>
+
+    <table class="table table-bordered" *ngIf="this.events.length > 0">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let event of events">
+                <td>{{event.name}}</td>
+                <td>
+                    {{ event.description.split(" ").length > 12 
+                        ? event.description.split(" ").slice(0, 12).join(" ") + "..." 
+                        : event.description }}
+                </td>
+                <td>
+                    <a [routerLink]="[event.eventId]">View</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
 </div>
 

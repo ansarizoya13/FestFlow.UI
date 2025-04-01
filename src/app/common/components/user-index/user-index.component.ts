@@ -6,6 +6,7 @@ import departmentViewModel from '../../models/departmentViewModel';
 import signUpModel from '../../models/signUpModel';
 import loginModel from '../../models/loginModel';
 import { SharedService } from '../../services/shared/shared.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-index',
@@ -22,7 +23,9 @@ export class UserIndexComponent implements OnInit{
 
   constructor(private router : Router, 
     private authService : AuthService, 
-    private sharedService : SharedService)
+    private sharedService : SharedService,
+    private toastr : ToastrService
+  )
   {
 
   }
@@ -52,7 +55,7 @@ export class UserIndexComponent implements OnInit{
           this.router.navigate(['user'])
       }
     }, (err : any)=> {
-        alert('Invalid Credentials');
+        this.toastr.error('Invalid Credentials');
     })
 
   }

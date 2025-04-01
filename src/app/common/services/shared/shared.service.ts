@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ROLE } from '../../constants/claims';
 import Role from '../../enums/roles';
 import { HttpHeaders } from '@angular/common/http';
+import { CoreService } from '../../../user/services/core.service';
 
 @Injectable({
   providedIn: 'root'
@@ -50,5 +51,6 @@ export class SharedService {
       'Authorization' : token ? `Bearer ${token}` : ''
     })
   }
+
 
 }

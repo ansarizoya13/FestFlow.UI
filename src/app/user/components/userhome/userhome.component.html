@@ -6,7 +6,7 @@
         <div class="card text-white bg-primary mb-3 card-height" id="card" (click)="card_click('user/events')">
           <div class="card-body text-center d-flex flex-column justify-content-center">
             <h1 class="card-title">Active Events</h1>
-            <h1 class="display-4">0</h1>
+            <h1 class="display-4">{{this.eventCount}}</h1>
           </div>
         </div>
       </div>
@@ -16,7 +16,7 @@
         <div class="card text-white text-light mb-3 card-height" id="card" (click)="card_click('user/feedbacks')">
           <div class="card-body text-center d-flex flex-column justify-content-center">
             <h1 class="card-title text-dark">Active Feedbacks</h1>
-            <h1 class="display-4 text-dark">5</h1>
+            <h1 class="display-4 text-dark">{{this.feedbackCount}}</h1>
           </div>
         </div>
       </div>
