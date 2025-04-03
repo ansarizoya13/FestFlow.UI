@@ -17,4 +17,16 @@ export class CoreService {
     const headers = this.sharedService.getHeaders();
     return this.http.get<eventsResponse[]>(`${environment.apiUrl}/api/event/getevents`, {headers});
   }
+
+  getEventWithQuestionairre(id : string) : Observable<any>
+  {
+    const headers = this.sharedService.getHeaders();
+    return this.http.get<any>(`${environment.apiUrl}/api/event/getEventWithQuestionairre/${id}`, {headers});
+  }
+
+  sendEventResponse(response : any) : Observable<any>
+  {
+    const headers = this.sharedService.getHeaders();
+    return this.http.post<any>(`${environment.apiUrl}/api/event/sendEventResponse`, response, {headers});
+  }
 }

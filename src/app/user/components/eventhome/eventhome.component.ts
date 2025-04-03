@@ -11,7 +11,7 @@ import eventsResponse from '../../../common/models/eventsResponse';
 })
 export class EventhomeComponent implements OnInit{
 
-  events : eventsResponse[]; 
+  events : eventsResponse[] = []; 
 
   constructor(private coreService : CoreService) {
   }

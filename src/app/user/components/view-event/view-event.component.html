@@ -1,1 +1,82 @@
-<p>view-event works!</p>
+<div class="container my-5">
+    <h3 class="mb-4 text-primary">{{ eventWithQuestionairre?.eventName }}</h3>
+  
+    <form #eventForm="ngForm" (ngSubmit)="submitForm(eventForm)" novalidate>
+      <div *ngFor="let question of eventWithQuestionairre?.eventQuestionairres" class="mb-3">
+
+        <!-- Label -->
+        <label class="form-label fw-bold">{{ question.label }}</label>
+        <label for="required-indicator" class="text-danger" *ngIf="question.mandatory">&nbsp;* </label>
+  
+        <!-- Basic Inputs -->
+        <input *ngIf="isBasicInput(question.type)"
+               class="form-control"
+               [class.is-invalid]="question.mandatory && !formData[question.eventQuestionnaireId] && eventForm.submitted"
+               [type]="getInputType(question.type)"
+               [required]="question.mandatory"
+               [(ngModel)]="formData[question.eventQuestionnaireId]"
+               #inputField="ngModel"
+               name="{{ question.eventQuestionnaireId }}"
+               [placeholder]="'Enter ' + question.label"
+               [email]="getInputType(question.type)==='email'">
+  
+        <div class="invalid-feedback" *ngIf="question.mandatory && !formData[question.eventQuestionnaireId] && eventForm.submitted">
+          {{ question.label }} is required.
+        </div>
+  
+        <!-- Radio Buttons -->
+        <div *ngIf="question.type === inputElements.Radio">
+          <div class="form-check" *ngFor="let option of question.options">
+            <input class="form-check-input" 
+                   type="radio" 
+                   [value]="option.eventQuestionairreOptionSetId" 
+                   [name]="question.eventQuestionnaireId"
+                   [(ngModel)]="formData[question.eventQuestionnaireId]"
+                   [required]="question.mandatory">
+            <label class="form-check-label">{{ option.option }}</label>
+          </div>
+  
+          <div class="invalid-feedback d-block" *ngIf="question.mandatory && !formData[question.eventQuestionnaireId] && eventForm.submitted">
+            {{ question.label }} is required.
+          </div>
+        </div>
+  
+        <!-- Checkbox Group -->
+        <div *ngIf="question.type === inputElements.Checkbox">
+          <div class="form-check" *ngFor="let option of question.options">
+            <input class="form-check-input" 
+                   type="checkbox" 
+                   [value]="option.eventQuestionairreOptionSetId"
+                   (change)="updateCheckbox(question.eventQuestionnaireId, $event)"
+                   [required]="question.mandatory">
+            <label class="form-check-label">{{ option.option }}</label>
+          </div>
+        </div>
+  
+        <!-- Dropdown -->
+        <select *ngIf="question.type === inputElements.Dropdown" 
+                class="form-control"
+                [class.is-invalid]="question.mandatory && !formData[question.eventQuestionnaireId] && eventForm.submitted"
+                [(ngModel)]="formData[question.eventQuestionnaireId]" 
+                name="{{ question.eventQuestionnaireId }}"
+                [required]="question.mandatory">
+          <option value="" disabled selected>Select {{ question.label }}</option>
+          <option *ngFor="let option of question.options" [value]="option.eventQuestionairreOptionSetId">
+            {{ option.option }}
+          </option>
+        </select>
+  
+        <!-- <div class="invalid-feedback" *ngIf="question.mandatory && !formData[question.eventQuestionnaireId] && eventForm.submitted">
+          Please select {{ question.label }}.
+        </div> -->
+  
+      </div>
+  
+      <!-- Submit Button -->
+       <div class="form-group">
+           <button type="submit" class="btn btn-success w-100" [disabled]="eventForm.invalid">Submit</button>
+           &nbsp;&nbsp;
+       </div>
+    </form>
+  </div>
+  
