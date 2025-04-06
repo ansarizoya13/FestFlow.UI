@@ -1,0 +1,36 @@
+<div class="container mt-5">
+    <h3 class="text-primary">Test Event</h3>
+  
+    <form #form="ngForm" (ngSubmit)="submitFeedback(form)">
+      
+      <!-- Star Rating -->
+      <div class="mb-3 mt-4">
+        <h6 class="form-label d-block">Your Rating:</h6>
+        <span *ngFor="let star of stars" 
+              (click)="setRating(star)" 
+              class="me-1"
+              style="cursor: pointer; font-size: 1.5rem; color: gold;">
+          <i class="bi" 
+             [ngClass]="star <= selectedRating ? 'bi-star-fill' : 'bi-star'">
+          </i>
+        </span>
+      </div>
+  
+      <!-- Description -->
+      <div class="mb-3 mt-4">
+        <h6 for="description" class="form-label">Comments</h6>
+        <textarea 
+          id="description"
+          name="description"
+          class="form-control" 
+          rows="4"
+          [(ngModel)]="description"
+          required
+          placeholder="Write your feedback here...">
+        </textarea>
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
+    </form>
+  </div>
+  

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CoreService } from '../../services/core.service';
 import InputElements from '../../../common/enums/inputElements';
 import { NgForm } from '@angular/forms';
@@ -18,7 +18,10 @@ export class ViewEventComponent implements OnInit {
   formData: any = {}; // Stores user input values
   inputElements = InputElements; // Enum reference
 
-  constructor(private route : ActivatedRoute, private coreService : CoreService, private toastr : ToastrService){}
+  constructor(private route : ActivatedRoute, 
+    private coreService : CoreService, 
+    private toastr : ToastrService,
+    private router : Router){}
 
   ngOnInit(): void {
     this.getEventWithQuestionairre();
@@ -82,9 +85,13 @@ export class ViewEventComponent implements OnInit {
     };
 
     this.coreService.sendEventResponse(formattedData).subscribe((res : any)=>{
-      
+      this.toastr.success("Done")
+      setTimeout(() => {
+        this.router.navigate(["user/events"]);
+      }, 1000);
     }, (err : any) => {
       console.error(err);
+      this.toastr.error("Something went wrong");
     })
   }
 }

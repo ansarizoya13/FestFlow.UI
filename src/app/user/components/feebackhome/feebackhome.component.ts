@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CoreService } from '../../services/core.service';
+import eventsResponse from '../../../common/models/eventsResponse';
 
 @Component({
   selector: 'app-feebackhome',
@@ -7,6 +9,24 @@ import { Component } from '@angular/core';
   templateUrl: './feebackhome.component.html',
   styleUrl: './feebackhome.component.css'
 })
-export class FeebackhomeComponent {
+export class FeebackhomeComponent implements OnInit {
+
+  feedbacks : eventsResponse[] = []
+
+  constructor(private coreService : CoreService){}
+
+  
+  ngOnInit(): void {
+    this.getFeedbacks();
+  }
+
+  getFeedbacks()
+  {
+    this.coreService.getFeedbacks().subscribe((res : eventsResponse[]) => {
+      this.feedbacks = res;
+    }, (err : any) => {
+      console.error(err);
+    })
+  }
 
 }

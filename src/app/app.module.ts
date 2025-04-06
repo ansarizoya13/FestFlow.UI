@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './common/components/footer/footer.component';
 import { IndexComponent } from './admin/components/index/index.component';
 import { UserIndexComponent } from './common/components/user-index/user-index.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { UserhomeComponent } from './user/components/userhome/userhome.component';
 import { NavbarComponent } from './common/components/navbar/navbar.component';
@@ -22,6 +22,7 @@ import { FeebackhomeComponent } from './user/components/feebackhome/feebackhome.
 import { EventhomeComponent } from './user/components/eventhome/eventhome.component';
 import { authInterceptorInterceptor } from './common/interceptors/auth-interceptor.interceptor';
 import { ViewEventComponent } from './user/components/view-event/view-event.component';
+import { SubmitFeedbackComponent } from './user/components/submit-feedback/submit-feedback.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ViewEventComponent } from './user/components/view-event/view-event.comp
     FeebackhomeComponent,
     EventhomeComponent,
     ViewEventComponent,
+    SubmitFeedbackComponent
   ],
   imports: [
     BrowserModule,

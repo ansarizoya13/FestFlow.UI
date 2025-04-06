@@ -22,12 +22,21 @@ export class UserhomeComponent implements OnInit {
   ngOnInit(): void {
 
     this.getEventsCount();
+    this.getFeedbacksCount();
 
   }
 
   getEventsCount(){
     this.coreService.getEvents().subscribe((res: eventsResponse[]) => {
       this.eventCount = res.length;
+    }, (err: any) => {
+      console.error(err);
+    })
+  }
+
+  getFeedbacksCount(){
+    this.coreService.getFeedbacks().subscribe((res: eventsResponse[]) => {
+      this.feedbackCount = res.length;
     }, (err: any) => {
       console.error(err);
     })

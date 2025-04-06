@@ -1,4 +1,26 @@
 <div class="container my-5">
     <h3 class="text-primary">FEEDBACKS</h3>
+
+    <h6 class="text-center my-5" *ngIf="this.feedbacks.length < 1">No Feebacks found!</h6>
+
+    <table class="table table-striped table-bordered" *ngIf="this.feedbacks.length > 0">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let feedback of feedbacks">
+                <td>{{feedback.name}}</td>
+                <td>
+                    <a [routerLink]="[feedback.eventId]">View</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+
 </div>
 

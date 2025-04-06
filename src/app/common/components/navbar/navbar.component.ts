@@ -16,8 +16,8 @@ import eventsResponse from '../../models/eventsResponse';
 export class NavbarComponent {
   name : string = ""
   isAdmin : boolean = false;
-  eventCount : number = 0;
-  feedbackCount : number = 0;
+  // eventCount : number = 0;
+  // feedbackCount : number = 0;
 
   constructor(private sharedService : SharedService, private authService : AuthService, private coreService : CoreService) {
     
@@ -26,17 +26,17 @@ export class NavbarComponent {
   ngOnInit(): void {
     this.name = this.sharedService.getDataFromClaims(NAME)
     this.isAdmin = this.sharedService.isLoggedInUserAdmin();
-    this.getEventCount();
+    // this.getEventCount();
   }
   
-  getEventCount()
-  {
-    this.coreService.getEvents().subscribe((res : eventsResponse[]) => {
-      this.eventCount = res.length;
-    }, (err : any) => {
-      console.error(err);
-    })
-  }
+  // getEventCount()
+  // {
+  //   this.coreService.getEvents().subscribe((res : eventsResponse[]) => {
+  //     this.eventCount = res.length;
+  //   }, (err : any) => {
+  //     console.error(err);
+  //   })
+  // }
 
   logout()
   {
