@@ -1,8 +1,46 @@
-<div class="container my-5 d-flex justify-content-between align-items-center">
+<div class="container mt-5 d-flex justify-content-between align-items-center">
     <h3 class="text-primary">EVENTS</h3>
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEventModal">
         + Add Event
     </button>
+</div>
+
+<!-- Grid -->
+<div class="container my-2">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Live</th>
+                <th>Feedback</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let event of eventsList">
+                <td>{{event.name}}</td>
+                <td>
+                    {{ event.description.split(" ").length > 12 
+                    ? event.description.split(" ").slice(0, 10).join(" ") + "..." 
+                    : event.description }}
+                </td>
+                <td>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="isLive" [checked]="event.isLive" (change)="drpLive_change($event, event.eventId)">
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="isAvailableForFeedback" [checked]="event.isAvailableForFeedback" (change)="drpFeedback_change($event, event.eventId)">
+                    </div>
+                </td>
+                <td>
+                    <a [routerLink]="[event.eventId,'responses']">View</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 <!-- Modal -->
@@ -10,50 +48,8 @@
     <div class="modal-dialog modal-xl"> <!-- Added `modal-xl` for extra-wide modal -->
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h5 class="modal-title" id="addEventModalLabel">Add New Event</h5>
+                <h5 class="modal-title text-light" id="addEventModalLabel">Add New Event</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body">
-                <form class="row g-3"> <!-- Added `row g-3` for better grid spacing -->
-                    <div class="col-md-6">
-                        <label for="eventName" class="form-label">Event Name</label>
-                        <input type="text" class="form-control" id="eventName" placeholder="Enter event name">
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="eventStart" class="form-label">Event Start Date & Time</label>
-                        <input type="datetime-local" class="form-control" id="eventStart">
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="eventEnd" class="form-label">Event End Date & Time</label>
-                        <input type="datetime-local" class="form-control" id="eventEnd">
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="eventFile" class="form-label">Upload File (XLS/XLSX only)</label>
-                        <input type="file" class="form-control" id="eventFile" accept=".xls,.xlsx">
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="eventDescription" class="form-label">Event Description</label>
-                        <textarea class="form-control" id="eventDescription" rows="3"
-                            placeholder="Enter event details"></textarea>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="branches" class="form-label">Departments</label>
-                        <ngx-select-dropdown [config]="drpBranchConfig" 
-                            [options]="drpBranchOptions"
-                            class="form-control border border-dark" name="drpBranch"
-                            (change)="drpBranch_change($event)" 
-                            ngModel #drpGender="ngModel" required
-                        >
-                        </ngx-select-dropdown>
-                    </div>
-
-                </form>
             </div>
 
             <div class="modal-footer">
@@ -63,3 +59,4 @@
         </div>
     </div>
 </div>
+

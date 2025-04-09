@@ -31,4 +31,42 @@ export class UserService {
     const headers = this.sharedService.getHeaders();
     return this.http.post<boolean>(`${environment.apiUrl}/api/User/set-admin`, opts, {headers})
   }
+
+  getEventsList() : Observable<any>
+  {
+    const headers = this.sharedService.getHeaders();
+    const response = this.http.get<any>(`${environment.apiUrl}/api/event/geteventslist`, {headers})
+    return response;
+  }
+
+  makeEventLive(state : boolean, eventId : string) : Observable<any>
+  {
+    const opts = {
+      eventId : eventId,
+      value : state
+    };
+
+    const headers = this.sharedService.getHeaders();
+    const response = this.http.post<any>(`${environment.apiUrl}/api/event/makeEventLive`, opts, {headers});
+    return response;
+  }
+
+  makeEventAvailableForFeedback(state : boolean, eventId : string) : Observable<any>
+  {
+    const opts = {
+      eventId : eventId,
+      value : state
+    };
+
+    const headers = this.sharedService.getHeaders();
+    const response = this.http.post<any>(`${environment.apiUrl}/api/event/makeEventAvailableForFeedback`, opts, {headers});
+    return response;
+  }
+
+  getEventsQuestionsAnsswers(eventId : string) : Observable<any>
+  {
+    const headers = this.sharedService.getHeaders();
+    const response = this.http.get<any>(`${environment.apiUrl}/api/event/GetEventsResponses/${eventId}`, {headers})
+    return response;
+  }
 }

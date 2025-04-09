@@ -16,6 +16,7 @@ import { EventhomeComponent } from './user/components/eventhome/eventhome.compon
 import { FeebackhomeComponent } from './user/components/feebackhome/feebackhome.component';
 import { ViewEventComponent } from './user/components/view-event/view-event.component';
 import { SubmitFeedbackComponent } from './user/components/submit-feedback/submit-feedback.component';
+import { ViewEventResponsesComponent } from './admin/components/view-event-responses/view-event-responses.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
       { path: "home", component: HomeComponent },
       { path: "manage/users", component: ManageUserComponent },
       { path: "manage/events", component: ManageEventsComponent },
+      { path: "manage/events/:id/responses", component: ViewEventResponsesComponent },
       { path: "profile", component: ViewProfileComponent }
     ]
   },

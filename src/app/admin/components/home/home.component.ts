@@ -9,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  dashboardStats = {
+    users: 150,
+    students: 120,
+    events: 35,
+    feedbacks: 70
+  };
+
 }

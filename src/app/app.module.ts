@@ -20,9 +20,11 @@ import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { UserstartComponent } from './user/components/userstart/userstart.component';
 import { FeebackhomeComponent } from './user/components/feebackhome/feebackhome.component';
 import { EventhomeComponent } from './user/components/eventhome/eventhome.component';
-import { authInterceptorInterceptor } from './common/interceptors/auth-interceptor.interceptor';
 import { ViewEventComponent } from './user/components/view-event/view-event.component';
 import { SubmitFeedbackComponent } from './user/components/submit-feedback/submit-feedback.component';
+import { AuthInterceptor } from './common/interceptors/auth-interceptor.interceptor';
+import { ViewEventResponsesComponent } from './admin/components/view-event-responses/view-event-responses.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { SubmitFeedbackComponent } from './user/components/submit-feedback/submi
     FeebackhomeComponent,
     EventhomeComponent,
     ViewEventComponent,
-    SubmitFeedbackComponent
+    SubmitFeedbackComponent,
+    ViewEventResponsesComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,15 @@ import { SubmitFeedbackComponent } from './user/components/submit-feedback/submi
       timeOut : 3000,
       positionClass : 'toast-top-right',
     }),
-    SelectDropDownModule
+    SelectDropDownModule,
+    NgxChartsModule
+  ],
+  providers : [
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass : AuthInterceptor,
+      multi : true
+    }
   ],
   bootstrap: [AppComponent]
 })

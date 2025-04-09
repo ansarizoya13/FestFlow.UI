@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/userService/user-service.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-events',
@@ -7,30 +9,42 @@ import { Component } from '@angular/core';
   templateUrl: './manage-events.component.html',
   styleUrl: './manage-events.component.css'
 })
-export class ManageEventsComponent {
+export class ManageEventsComponent implements OnInit {
 
-  drpBranchOptions = [
-    {name : 'Male', value : 'Male'},
-    {name : 'Female', value : 'Female'},
-    {name : 'LGBTQIA++', value : 'Others'}
-  ]
+  eventsList : any[] = [];
 
-  drpBranchConfig = {
-    displayKey: 'name', // Key to display in the dropdown
-    search: true,       // Enable search functionality
-    height: '200px',    // Set the height of the dropdown
-    placeholder: 'Select an option', // Placeholder text
-    clearSearchOnClose: true, // Clear search field when dropdown is closed
-    moreText: 'more',  // Text for showing more items
-    noResultsText: 'No results found', // Text to display when no results are found
-    searchPlaceholder: 'Search...',// Placeholder for the search box
-    multiple : true,
-  };
-
-
-  drpBranch_change(event : any)
-  {
-
+  constructor(private userService : UserService, private toastr : ToastrService) {
+    
   }
 
+  ngOnInit(): void {
+    this.getEventList();
+  }
+
+  getEventList()
+  {
+    this.userService.getEventsList().subscribe((res : any) => {
+      this.eventsList = res;
+    }, (err : any) => {
+      this.toastr.error("Something went wrong");
+    })
+  }
+
+  drpLive_change(event : any, eventId : string)
+  {
+    this.userService.makeEventLive(event.target.checked, eventId).subscribe((res : any)=>{
+      this.toastr.success("Done");
+    }, (err : any) => {
+      this.toastr.error("Something went wrong");
+    })
+  }
+
+  drpFeedback_change(event : any, eventId : string)
+  {
+    this.userService.makeEventAvailableForFeedback(event.target.checked, eventId).subscribe((res : any)=>{
+      this.toastr.success("Done");
+    }, (err : any) => {
+      this.toastr.error("Something went wrong");
+    })
+  }
 }

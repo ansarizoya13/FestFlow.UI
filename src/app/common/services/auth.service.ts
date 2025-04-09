@@ -36,7 +36,7 @@ export class AuthService {
     this.http.post(`${environment.apiUrl}/api/auth/logout`, {}, {headers}).subscribe({
       next: () => {
         localStorage.removeItem('token');
-        this.router.navigate([''])
+        this.router.navigate(['/'])
       },
       error: (err) => console.error("Logout failed", err)
     })
