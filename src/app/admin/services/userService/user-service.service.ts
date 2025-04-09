@@ -69,4 +69,11 @@ export class UserService {
     const response = this.http.get<any>(`${environment.apiUrl}/api/event/GetEventsResponses/${eventId}`, {headers})
     return response;
   }
+
+  getStatistics() : Observable<any>
+  {
+    const headers = this.sharedService.getHeaders();
+    const response = this.http.get<any>(`${environment.apiUrl}/api/user/getstatistics`, {headers});
+    return response;
+  }
 }
