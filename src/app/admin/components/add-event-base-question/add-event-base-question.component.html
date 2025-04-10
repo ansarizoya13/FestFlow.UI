@@ -1,0 +1,40 @@
+<div class="container my-5">
+    <h3 class="text-primary">QUESTIONS</h3>
+
+    <form #eventForm="ngForm" (ngSubmit)="goToNext(eventForm)" class="mt-4">
+        <!-- Event Name -->
+        <div class="mb-3">
+            <label for="eventName" class="form-label">Event Name</label>
+            <input type="text" class="form-control" id="eventName" name="eventName" required #eventNameField="ngModel"
+                ngModel />
+            <div class="text-danger" *ngIf="eventNameField.invalid && eventNameField.touched">
+                Event name is required.
+            </div>
+        </div>
+
+        <!-- Event Description -->
+        <div class="mb-3">
+            <label for="eventDescription" class="form-label">Event Description</label>
+            <textarea class="form-control" id="eventDescription" name="eventDescription" rows="3" required
+                #eventDescriptionField="ngModel" ngModel>
+            </textarea>
+        </div>
+
+        <!-- Branch Dropdown -->
+        <div class="mb-3">
+            <label for="branch" class="form-label">Select Branch</label>
+            <ngx-select-dropdown 
+                [config]="drpBranchesConfig" 
+                [options]="drpBranchesOptions"
+                [multiple]="true"
+                class="form-control border border-dark" 
+                name="branches" 
+                ngModel #drpGender="ngModel" 
+                required
+            >
+            </ngx-select-dropdown>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="eventForm.invalid">Next</button>
+    </form>
+</div>

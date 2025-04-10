@@ -25,6 +25,8 @@ import { SubmitFeedbackComponent } from './user/components/submit-feedback/submi
 import { AuthInterceptor } from './common/interceptors/auth-interceptor.interceptor';
 import { ViewEventResponsesComponent } from './admin/components/view-event-responses/view-event-responses.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { AddEventBaseQuestionComponent } from './admin/components/add-event-base-question/add-event-base-question.component';
+import { AddEventQuestionairresComponent } from './admin/components/add-event-questionairres/add-event-questionairres.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     EventhomeComponent,
     ViewEventComponent,
     SubmitFeedbackComponent,
-    ViewEventResponsesComponent
+    ViewEventResponsesComponent,
+    AddEventBaseQuestionComponent,
+    AddEventQuestionairresComponent
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import userViewModel from '../../../common/models/userViewModel';
 import { SharedService } from '../../../common/services/shared/shared.service';
 import markUserAdmin from '../../../common/models/markUserAdmin';
 import markUserInactive from '../../../common/models/markUserInactive';
+import { EventLSModel } from '../../../common/models/eventLSModel';
 
 @Injectable({
   providedIn: 'root'
@@ -74,6 +75,13 @@ export class UserService {
   {
     const headers = this.sharedService.getHeaders();
     const response = this.http.get<any>(`${environment.apiUrl}/api/user/getstatistics`, {headers});
+    return response;
+  }
+
+  submitEventAndQuestion(obj : EventLSModel) : Observable<any>
+  {
+    const headers = this.sharedService.getHeaders();
+    const response = this.http.post<any>(`${environment.apiUrl}/api/event/CreateEventWithQuestions`, obj, {headers});
     return response;
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/userService/user-service.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-events',
@@ -13,7 +14,9 @@ export class ManageEventsComponent implements OnInit {
 
   eventsList : any[] = [];
 
-  constructor(private userService : UserService, private toastr : ToastrService) {
+  constructor(private userService : UserService, 
+    private toastr : ToastrService, private router : Router
+    ) {
     
   }
 
@@ -47,4 +50,11 @@ export class ManageEventsComponent implements OnInit {
       this.toastr.error("Something went wrong");
     })
   }
+
+  addEvent_click()
+  {
+    this.router.navigate(["admin/manage/events/add/questions/1"]);
+  }
+
+
 }

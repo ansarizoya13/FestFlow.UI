@@ -1,0 +1,72 @@
+<div class="container my-5">
+    <h3 class="text-primary mb-4">Questions</h3>
+
+    <form #form="ngForm" (ngSubmit)="submitAll(form)">
+        <div *ngFor="let q of questions; let i = index" class="border rounded p-3 mb-4 bg-light">
+            <h5 class="text-secondary">Question {{ i + 1 }}</h5>
+
+            <!-- Question Text -->
+            <div class="mb-3">
+                <label class="form-label">Question Text</label>
+                <input type="text" class="form-control" name="questionText{{ i }}" [(ngModel)]="q.questionText"
+                    required />
+            </div>
+
+            <!-- Question Type -->
+            <div class="mb-3">
+                <label class="form-label">Question Type</label>
+                <select class="form-select" name="questionType{{ i }}" [(ngModel)]="q.questionType"
+                    (change)="onTypeChange(q)" required>
+                    <option *ngFor="let type of questionTypes" [value]="type.value">
+                        {{ type.label }}
+                    </option>
+                </select>
+            </div>
+
+            <!-- Mandatory Checkbox -->
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" name="mandatory{{ i }}" [(ngModel)]="q.mandatory" />
+                <label class="form-check-label">Mandatory</label>
+            </div>
+
+            <!-- Multi-Option Types -->
+            <div *ngIf="isMultiOption(q.questionType)" class="mb-3">
+                <label class="form-label">Options</label>
+                <div *ngFor="let opt of q.options; let j = index; trackBy: trackByIndex" class="input-group mb-2">
+                    <input type="text" class="form-control" [(ngModel)]="q.options[j]" name="option{{ i }}_{{ j }}"
+                        placeholder="Option {{ j + 1 }}" required />
+                    <button type="button" class="btn btn-outline-danger" (click)="removeOption(q, j)">
+                        &times;
+                    </button>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-primary" (click)="addOption(q)">
+                    Add Option
+                </button>
+            </div>
+
+            <!-- Radio Option (Fixed 2 options) -->
+            <div *ngIf="q.questionType === 'radio'" class="mb-3">
+                <label class="form-label">Radio Options</label>
+                <div *ngFor="let opt of q.options; let j = index; trackBy: trackByIndex" class="input-group mb-2">
+                    <input type="text" class="form-control" [(ngModel)]="q.options[j]" name="radioOption{{ i }}_{{ j }}"
+                        required />
+                    <span class="input-group-text">Option {{ j + 1 }}</span>
+                </div>
+            </div>
+
+
+            <button type="button" class="btn btn-outline-danger btn-sm mt-2" (click)="removeQuestion(i)">
+                Remove Question
+            </button>
+        </div>
+
+        <button type="button" class="btn btn-outline-primary mb-3" (click)="addQuestion()">
+            + Add Question
+        </button>
+
+        <br />
+        <button type="submit" class="btn btn-success" [disabled]="form.invalid">
+            Submit All Questions
+        </button>
+    </form>
+</div>

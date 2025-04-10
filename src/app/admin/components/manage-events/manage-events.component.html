@@ -1,6 +1,6 @@
 <div class="container mt-5 d-flex justify-content-between align-items-center">
     <h3 class="text-primary">EVENTS</h3>
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEventModal">
+    <button class="btn btn-primary" (click)="addEvent_click()">
         + Add Event
     </button>
 </div>
@@ -43,20 +43,5 @@
     </table>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl"> <!-- Added `modal-xl` for extra-wide modal -->
-        <div class="modal-content">
-            <div class="modal-header bg-primary">
-                <h5 class="modal-title text-light" id="addEventModalLabel">Add New Event</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save Event</button>
-            </div>
-        </div>
-    </div>
-</div>
 
